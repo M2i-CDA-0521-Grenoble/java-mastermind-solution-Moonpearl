@@ -42,8 +42,7 @@ public class App
                     correctCount += 1;
                 }
             }
-            System.out.println("Nombre de couleurs bien placées: " + correctCount);
-
+            
             // Détermine les couleurs absentes
             // Initialise le compte des couleurs absentes à zéro
             int absentCount = 0;
@@ -65,15 +64,30 @@ public class App
                 }
                 int excess = propositionColorCount - solutionColorCount;
                 // Ajoute au compte des couleurs absentes ce nombre de couleurs excédentaires
+                // (uniquement dans le cas où les couleurs sont exécendaites dans proposition de l'utilisateur)
                 if (excess > 0) {
                     absentCount += excess;
                 }
             }
 
-            System.out.println("Nombre de couleurs absentes: " + absentCount);
+            // Déduit le nombre de couleurs mal placées
+            int misplacedCount = 4 - correctCount - absentCount;
 
+            // Affiche la réponse de l'ordinateur
+            for (int i = 0; i < correctCount; i++) {
+                System.out.print("O ");
+            }
+            for (int i = 0; i < misplacedCount; i++) {
+                System.out.print("X ");
+            }
+            for (int i = 0; i < absentCount; i++) {
+                System.out.print("- ");
+            }
+            
         } else {
             System.out.println("Saisie incorrecte.");
         }
+
+        scanner.close();
     }
 }
