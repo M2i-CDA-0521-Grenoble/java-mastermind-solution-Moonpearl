@@ -1,4 +1,6 @@
-import java.nio.channels.FileChannel.MapMode;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,6 +30,7 @@ public class App
 
             // Transforme la saisie utilisateur en tableau de caractères pour faciliter son exploitation
             char[] proposition = userInput.toCharArray();
+
             // Détermine les couleurs bien placées
             // Initialise le compte des couleurs bien placées à zéro
             int correctCount = 0;
@@ -39,7 +42,35 @@ public class App
                     correctCount += 1;
                 }
             }
-            System.out.println(correctCount);
+            System.out.println("Nombre de couleurs bien placées: " + correctCount);
+
+            // Détermine les couleurs absentes
+            // Initialise le compte des couleurs absentes à zéro
+            int absentCount = 0;
+            // Pour chaque couleur possible
+            for (char colorCharacter : new char[] { 'R', 'V', 'B', 'J', 'C', 'M' }) {
+                // Compte le nombre de cette couleur en trop dans la proposition de l'utilisateur
+                // par rapport à la solution
+                int solutionColorCount = 0;
+                for (char character : solution) {
+                    if (character == colorCharacter) {
+                        solutionColorCount += 1;
+                    }
+                }
+                int propositionColorCount = 0;
+                for (char character : proposition) {
+                    if (character == colorCharacter) {
+                        propositionColorCount += 1;
+                    }
+                }
+                int excess = propositionColorCount - solutionColorCount;
+                // Ajoute au compte des couleurs absentes ce nombre de couleurs excédentaires
+                if (excess > 0) {
+                    absentCount += excess;
+                }
+            }
+
+            System.out.println("Nombre de couleurs absentes: " + absentCount);
 
         } else {
             System.out.println("Saisie incorrecte.");
