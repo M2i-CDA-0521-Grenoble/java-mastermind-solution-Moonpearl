@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class App
 {
@@ -17,24 +19,9 @@ public class App
         // Attend une saisie utilisateur
         String userInput = scanner.nextLine();
         // Vérifie que la saisie utilisateur contient bien 4 caractères parmi les 6 couleurs existantes
-        boolean valid = true;
-        if (userInput.length() != 4) {
-            valid = false;
-        } else {
-            for (int i = 0; i < 4; i++) {
-                if (userInput.charAt(i) != 'R'
-                    && userInput.charAt(i) != 'V'
-                    && userInput.charAt(i) != 'B'
-                    && userInput.charAt(i) != 'J'
-                    && userInput.charAt(i) != 'C'
-                    && userInput.charAt(i) != 'M'
-                ) {
-                    valid = false;
-                    break;
-                }
-            }
-        }
-        if (valid) {
+        Pattern pattern = Pattern.compile("^[RVBJCM]{4}$");
+        Matcher matcher = pattern.matcher(userInput);
+        if (matcher.matches()) {
             System.out.println("Saisie correcte.");
         } else {
             System.out.println("Saisie incorrecte.");
