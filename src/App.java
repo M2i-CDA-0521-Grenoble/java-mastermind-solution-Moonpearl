@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
-import game.Color;
-import game.ColorCombination;
-import game.ComparisonResult;
+import game.*;
 
 public class App
 {
@@ -13,11 +11,11 @@ public class App
      */
     public static void main(String[] args) throws Exception {
         // Efface la console
-        System.out.print("\033[H\033[2J");   
+        System.out.print("\033[H\033[2J");
         System.out.flush();
 
-        // Génére une solution
-        ColorCombination solution = new ColorCombination(new Color[] { Color.Magenta, Color.Magenta, Color.Cyan, Color.Red });
+        // Génére une solution aléatoirement
+        ColorCombination solution = ColorCombination.generateRandomCombination();
         
         // Crée une interface permettant de surveiller les saisies utilisateur dans la console
         Scanner scanner = new Scanner(System.in);
@@ -45,7 +43,8 @@ public class App
 
                 // Si l'utilisateur souhaite jouer une nouvelle partie
                 if ("O".equals(userInput)) {
-                    // TODO: Réinitialiser le jeu en générant une nouvelle solution
+                    // Réinitialise le jeu en générant une nouvelle solution
+                    solution = ColorCombination.generateRandomCombination();
                 // Sinon, interrompt la boucle principale et arrête le jeu
                 } else {
                     break;

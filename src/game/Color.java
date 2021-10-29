@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Random;
+
 /**
  * Représente une couleur possible dans les combinaisons du jeu
  */
@@ -36,7 +38,7 @@ public enum Color
     }
 
     /**
-     * Cherche la couleur correspondant à un caractère donnée
+     * Cherche la couleur correspondant à un caractère donné
      * @param character Le caractère correspondant à la couleur à rechercher
      */
     static public Color findColorByCharacter(char character)
@@ -51,5 +53,21 @@ public enum Color
         // Si aucune couleur n'a été trouvée, arrête l'application avec un message d'erreur
         // car ce n'est jamais censé arriver
         throw new RuntimeException("This color does not exist.");
+    }
+
+    /**
+     * Cherche une couleur au hasard
+     * @return
+     */
+    static public Color findAtRandom()
+    {
+        // Récupère la liste de toutes les couleurs possibles
+        Color[] colors = Color.values();
+        // Crée un générateur de nombres aléatoires
+        Random rand = new Random();
+        // Génère un nombre aléatoire
+        int n = rand.nextInt(colors.length);
+        // Renvoie la n-ième couleur en fonction du nombre généré
+        return colors[n];
     }
 }

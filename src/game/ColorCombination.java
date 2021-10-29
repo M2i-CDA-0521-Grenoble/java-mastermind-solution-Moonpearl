@@ -15,7 +15,22 @@ public class ColorCombination
      */
     private Color[] colors;
 
-    // TODO: Méthode qui permette de générer une combinaison aléatoirement
+    /**
+     * Génère une combinaison de couleurs de manière aléatoire
+     * @return
+     */
+    static public ColorCombination generateRandomCombination()
+    {
+        // Initialise le tableau des couleurs générées
+        Color[] generatedColors = new Color[4];
+        // Répète 4 fois les opérations suivantes
+        for (int i = 0; i < 4; i++) {
+            // Ajoute cette couleur au tableau des couleurs générées
+            generatedColors[i] = Color.findAtRandom();
+        }
+        // Renvoie une combinaison de couleurs construite à partir du tableau des couleurs générées
+        return new ColorCombination(generatedColors);
+    }
 
     /**
      * Crée une nouvelle combinaison de couleurs à partie d'un tableau de couleurs
